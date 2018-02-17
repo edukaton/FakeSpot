@@ -18,6 +18,8 @@ module.exports = {
   rules: {
     "import/no-commonjs": ["error", "always"],
     "import/prefer-default-export": 0,
+    // "import/no-unresolved": 0,
+    // "import/no-extraneous-dependencies": 0,
 
     "react/forbid-prop-types": 0,
     // "react/react-in-jsx-scope": 0,
@@ -25,6 +27,8 @@ module.exports = {
     "react/no-deprecated": 0,
     "react/no-danger": 0,
     "react/jsx-curly-spacing": [2, {"when": "never", "allowMultiline": true}],
+    "react/prefer-stateless-function": 0,
+    "react/no-array-index-key": 0,
 
     "no-nested-ternary": 0,
     "function-paren-newline": 0,
