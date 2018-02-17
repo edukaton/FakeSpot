@@ -2,6 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
+import "./base.sass";
 
 import Challange from "./views/Challange";
 

@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import styles from "./styles.sass";
+
 export default class LifeLinesList extends React.PureComponent {
   static propTypes = {
     lifeLines: PropTypes.array.isRequired,
@@ -20,7 +22,7 @@ export default class LifeLinesList extends React.PureComponent {
     ));
 
     return (
-      <div>
+      <div className={styles.container}>
         {list}
       </div>
     );

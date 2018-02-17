@@ -5,23 +5,25 @@ const initialState = {
     {
       id: 0,
       text: "Znajdująca się na skraju Układu Słonecznego Planeta X zagraża Ziemi!",
-      isTrue: true,
-      wasAnswered: false,
       difficulty: 0,
+      category: "polityka",
+      isTrue: true,
       lifeLines: [
         {
           id: 0,
           title: "1. Koło ratunkowe",
-          text: "",
+          text: "google keywords",
         },
         {
           id: 1,
           title: "2. Koło ratunkowe",
-          text: "",
+          text: "dobre źródła",
         },
       ],
+
+      wasAnswered: false,
       userAnswer: {
-        sources: {},
+        sources: [],
         isTrue: null,
       },
     },
@@ -35,6 +37,8 @@ export default function reducer(state = initialState, action) {
 
   const deepDataCopy = Object.assign({}, newState.data[newState.data.length - 1]);
   newState.data[newState.data.length - 1] = deepDataCopy;
+
+  console.log(action);
 
   switch (action.type) {
     case "QUESTION/USER_SUBMIT": {
