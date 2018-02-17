@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import Challange from "../Challange";
+import AnswerSuccess from "../AnswerSuccess";
+
 import Sidebar from "../../components/Sidebar/";
 import Container from "../../components/Container";
 
@@ -24,6 +26,11 @@ export default class Main extends React.Component {
     switch (state) {
       case "playing": {
         mainComponent = <Challange />;
+        break;
+      }
+      case "answerSuccess": {
+        mainComponent = <AnswerSuccess />;
+        break;
       }
 
       // no default

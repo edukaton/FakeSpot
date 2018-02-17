@@ -1,4 +1,5 @@
 const initialState = {
+  // state: "answerSuccess",
   state: "playing",
 };
 

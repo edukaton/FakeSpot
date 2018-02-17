@@ -29,6 +29,7 @@ module.exports = {
     "react/jsx-curly-spacing": [2, {"when": "never", "allowMultiline": true}],
     "react/prefer-stateless-function": 0,
     "react/no-array-index-key": 0,
+    "react/prop-types": 0,
 
     "no-nested-ternary": 0,
     "function-paren-newline": 0,

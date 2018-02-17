@@ -8,6 +8,7 @@ const initialState = {
       difficulty: 0,
       category: "polityka",
       isTrue: true,
+      questionComment: "Planeta istnieje ale nie zagraża światu ",
       lifeLines: [
         {
           id: 0,
