@@ -34,6 +34,7 @@
     "server": "node ./server/index.js"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "history": "^4.7.2",
     "json-server": "^0.12.1",
     "moment": "^2.20.1",
@@ -43,7 +44,8 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.3",

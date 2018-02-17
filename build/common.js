@@ -24,10 +24,11 @@ const HtmlWebpackPluginConfig = {
 module.exports = {
   iP,
   config: {
-    entry: {
-      app: "./src/index.js",
-      vendor: ["react", "react-dom", "history", "offline-plugin/runtime"],
-    },
+    entry: ["babel-polyfill", "./src/index.js"],
+    // entry: [{
+    //   app: "./src/index.js",
+    //   vendor: ["react", "react-dom", "history", "offline-plugin/runtime"],
+    // },
 
     output: {
       path: path.join(__dirname, "../dist"),
@@ -76,9 +77,9 @@ module.exports = {
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
       }),
       new HtmlWebpackPlugin(HtmlWebpackPluginConfig),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: "vendor",
-      }),
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: "vendor",
+      // }),
       new OfflinePlugin(),
     ],
   },
