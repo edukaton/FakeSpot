@@ -9,6 +9,7 @@ import InputsList from "../../components/InputsList/";
 import ChallangeCard from "../../components/ChallangeCard";
 import LifeLinesList from "../../components/LifeLinesList/";
 import TrueFalseButtons from "../../components/TrueFalseButtons";
+import LifeLinesDisplayed from "../../components/LifeLinesDisplayed";
 
 const mapStateToProps = ({ questions }) => ({
   challange: questions.data[questions.data.length - 1],
@@ -26,6 +27,7 @@ export default class Challange extends React.Component {
     this.state = {
       sources: [],
       lifeLinesUsed: [],
+      optionSelected: null,
     };
 
     dispatch(fetchQuestion());
@@ -72,13 +74,19 @@ export default class Challange extends React.Component {
     this.setState({ sources: newSources });
   }
 
-  onSubmitTrue = (...args) => this.submitAnswer(true)(...args);
-  onSubmitFalse = (...args) => this.submitAnswer(false)(...args);
+  onSubmitTrue = () => this.selectButton(true);
+  onSubmitFalse = () => this.selectButton(false);
 
-  submitAnswer = val => () => {
+  selectButton = (val) => {
+    this.setState({
+      optionSelected: val,
+    });
+  }
+
+  submitAnswer = () => {
     const { challange, dispatch } = this.props;
 
-    if (val === challange.isTrue) {
+    if (this.state.optionSelected === challange.isTrue) {
       console.log("You did it!");
     } else {
       console.log("Unfortunately no 😔!");
@@ -87,7 +95,7 @@ export default class Challange extends React.Component {
     dispatch({
       type: "QUESTION/USER_SUBMIT",
       payload: {
-        isTrue: val,
+        isTrue: this.state.optionSelected,
         sources: this.state.sources,
       },
     });
@@ -103,27 +111,18 @@ export default class Challange extends React.Component {
     const { challange } = this.props;
     const { sources } = this.state;
 
-    const LifeLinesDispalyed = this.state.lifeLinesUsed.map(val =>
-      challange.lifeLines.find(
-        ({ id }) => (id === val),
-      ).text,
-    );
-
     return (
       <div>
         <ChallangeCard>
           <NewsPaper>
-            <header>
-              <span>{`Poziom: ${challange.difficulty}`}</span>
-              <span>{`Kategoria: ${challange.category}`}</span>
-            </header>
             <h1>{challange.text}</h1>
           </NewsPaper>
 
-          <main>
+          <main style={{ paddingTop: 0 }}>
             <TrueFalseButtons
               onSubmitTrue={this.onSubmitTrue}
               onSubmitFalse={this.onSubmitFalse}
+              selected={this.state.optionSelected}
             />
 
             <LifeLinesList
@@ -132,7 +131,7 @@ export default class Challange extends React.Component {
               onClick={this.useLifeline}
             />
 
-            {LifeLinesDispalyed}
+            <LifeLinesDisplayed lifeLines={challange.lifeLines} lifeLinesUsed={this.state.lifeLinesUsed} />
 
             <InputsList
               sources={sources}
@@ -142,7 +141,7 @@ export default class Challange extends React.Component {
             <br />
 
             <div className="flex justify-center">
-              <button>Wyślij</button>
+              <button onClick={this.submitAnswer}>Wyślij</button>
             </div>
           </main>
         </ChallangeCard>

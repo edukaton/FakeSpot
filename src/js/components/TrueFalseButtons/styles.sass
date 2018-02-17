@@ -5,7 +5,9 @@
   padding: 32px 0
   border: $buttons-border solid
   border-width: 0 16px 16px
-  background: repeating-linear-gradient(-45deg, $buttons-stripes-light, $buttons-stripes-light 30px, $buttons-stripes-dark 30px, $buttons-stripes-dark 60px )
+  border-radius: 0 0 2px 2px
+  background: $buttons-stripes-light
+  // background: repeating-linear-gradient(-45deg, $buttons-stripes-light, $buttons-stripes-light 30px, $buttons-stripes-dark 30px, $buttons-stripes-dark 60px )
 
 .buttonContainer
   display: flex
@@ -40,15 +42,29 @@
       border: 6px $button-border-success solid
       background: $button-bg-success
 
+      &.checked
+        transform: scale(1.05)
+        box-shadow: 0 0 0 6px $button-border-2-success, 0 0 0 10px $buttons-border-active, 0 0 20px 10px $buttons-shadow-idle
+
+        &:hover
+          box-shadow: 0 0 0 6px $button-border-2-success, 0 0 0 10px $buttons-border-active, 0 0 20px 6px $buttons-shadow-hover
+
       &:hover
-        box-shadow: 0 0 0 6px $button-border-2-success, 0 0 20px 6px rgba(0, 0, 0, 0.3)
+        box-shadow: 0 0 0 6px $button-border-2-success, 0 0 20px 6px $buttons-shadow-hover
 
       &, &:active
-        box-shadow: 0 0 0 6px $button-border-2-success, 0 0 20px 6px rgba(0, 0, 0, 0.1)
+        box-shadow: 0 0 0 6px $button-border-2-success, 0 0 20px 6px $buttons-shadow-idle
 
     &.false
       border: 6px $button-border-fail solid
       background: $button-bg-fail
+
+      &.checked
+        transform: scale(1.05)
+        box-shadow: 0 0 0 6px $button-border-2-fail, 0 0 0 10px $buttons-border-active, 0 0 20px 10px $buttons-shadow-idle
+
+        &:hover
+          box-shadow: 0 0 0 6px $button-border-2-fail, 0 0 0 10px $buttons-border-active, 0 0 20px 6px $buttons-shadow-hover
 
       &:hover
         box-shadow: 0 0 0 6px $button-border-2-fail, 0 0 20px 6px rgba(0, 0, 0, 0.3)
