@@ -38,7 +38,7 @@ export default function reducer(state = initialState, action) {
   const deepDataCopy = Object.assign({}, newState.data[newState.data.length - 1]);
   newState.data[newState.data.length - 1] = deepDataCopy;
 
-  console.log(action);
+  // console.log(action);
 
   switch (action.type) {
     case "QUESTION/USER_SUBMIT": {
@@ -46,6 +46,10 @@ export default function reducer(state = initialState, action) {
       newState.data[newState.data.length - 1].wasAnswered = true;
 
       return newState;
+    }
+
+    case "QUESTION_FETCHED": {
+      console.log(action.payload);
     }
 
     // no default

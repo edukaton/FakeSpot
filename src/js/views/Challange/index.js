@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import Sidebar from "../../components/Sidebar/";
-import Container from "../../components/Container";
+import { fetchQuestion } from "../../actions/questions/";
+
 import NewsPaper from "../../components/NewsPaper";
 import InputsList from "../../components/InputsList/";
 import ChallangeCard from "../../components/ChallangeCard";
@@ -21,12 +21,14 @@ export default class Challange extends React.Component {
     dispatch: PropTypes.func.isRequired,
   }
 
-  constructor() {
+  constructor({ dispatch }) {
     super();
     this.state = {
       sources: [],
       lifeLinesUsed: [],
     };
+
+    dispatch(fetchQuestion());
   }
 
   onSourceInput = n => (e) => {
@@ -108,46 +110,43 @@ export default class Challange extends React.Component {
     );
 
     return (
-      <Container>
-        <Sidebar />
-        <div>
-          <ChallangeCard>
-            <NewsPaper>
-              <header>
-                <span>{`Poziom: ${challange.difficulty}`}</span>
-                <span>{`Kategoria: ${challange.category}`}</span>
-              </header>
-              <h1>{challange.text}</h1>
-            </NewsPaper>
+      <div>
+        <ChallangeCard>
+          <NewsPaper>
+            <header>
+              <span>{`Poziom: ${challange.difficulty}`}</span>
+              <span>{`Kategoria: ${challange.category}`}</span>
+            </header>
+            <h1>{challange.text}</h1>
+          </NewsPaper>
 
-            <main>
-              <TrueFalseButtons
-                onSubmitTrue={this.onSubmitTrue}
-                onSubmitFalse={this.onSubmitFalse}
-              />
+          <main>
+            <TrueFalseButtons
+              onSubmitTrue={this.onSubmitTrue}
+              onSubmitFalse={this.onSubmitFalse}
+            />
 
-              <LifeLinesList
-                lifeLines={challange.lifeLines}
-                used={this.state.lifeLinesUsed}
-                onClick={this.useLifeline}
-              />
+            <LifeLinesList
+              lifeLines={challange.lifeLines}
+              used={this.state.lifeLinesUsed}
+              onClick={this.useLifeline}
+            />
 
-              {LifeLinesDispalyed}
+            {LifeLinesDispalyed}
 
-              <InputsList
-                sources={sources}
-                onSourceInput={this.onSourceInput}
-                onTextInput={this.onTextInput}
-              />
-              <br />
+            <InputsList
+              sources={sources}
+              onSourceInput={this.onSourceInput}
+              onTextInput={this.onTextInput}
+            />
+            <br />
 
-              <div className="flex justify-center">
-                <button>Wyślij</button>
-              </div>
-            </main>
-          </ChallangeCard>
-        </div>
-      </Container>
+            <div className="flex justify-center">
+              <button>Wyślij</button>
+            </div>
+          </main>
+        </ChallangeCard>
+      </div>
     );
   }
 }
