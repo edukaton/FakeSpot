@@ -17,7 +17,7 @@
         "href": "/favicon.ico",
         "rel": "icon"
       },
-      "https://fonts.googleapis.com/css?family=Material+Icons|Lato"
+      "https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:400,800"
     ],
     "lang": "pl-PL",
     "appMountId": "app"
@@ -39,13 +39,16 @@
     "json-server": "^0.12.1",
     "moment": "^2.20.1",
     "offline-plugin": "^4.8.4",
+    "postcss-nested": "^3.0.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.2.0",
+    "tailwindcss": "^0.4.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.3",

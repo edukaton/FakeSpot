@@ -1,8 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+
+import { fetchQuestion } from "../../actions/questions/";
+
+import NewsPaper from "../../components/NewsPaper";
 import InputsList from "../../components/InputsList/";
+import ChallangeCard from "../../components/ChallangeCard";
 import LifeLinesList from "../../components/LifeLinesList/";
+import TrueFalseButtons from "../../components/TrueFalseButtons";
 
 const mapStateToProps = ({ questions }) => ({
   challange: questions.data[questions.data.length - 1],
@@ -15,19 +21,53 @@ export default class Challange extends React.Component {
     dispatch: PropTypes.func.isRequired,
   }
 
-  constructor() {
+  constructor({ dispatch }) {
     super();
     this.state = {
       sources: [],
       lifeLinesUsed: [],
     };
+
+    dispatch(fetchQuestion());
   }
 
-  onSourcesInput = n => (e) => {
+  onSourceInput = n => (e) => {
     let newSources = [...this.state.sources];
     newSources[n] = e.target.value;
 
     newSources = newSources.filter(val => val !== "");
+
+    this.setState({ sources: newSources });
+  }
+
+  onSourceInput = n => (e) => {
+    let newSources = [...this.state.sources];
+    if (!newSources[n]) {
+      newSources[n] = {
+        source: "",
+        text: "",
+      };
+    }
+
+    newSources[n] = { source: e.target.value, text: newSources[n].text };
+
+    newSources = newSources.filter(val => (val.source !== "" || val.text !== ""));
+
+    this.setState({ sources: newSources });
+  }
+
+  onTextInput = n => (e) => {
+    let newSources = [...this.state.sources];
+    if (!newSources[n]) {
+      newSources[n] = {
+        source: "",
+        text: "",
+      };
+    }
+
+    newSources[n] = { source: newSources[n].source, text: e.target.value };
+
+    newSources = newSources.filter(val => (val.source !== "" || val.text !== ""));
 
     this.setState({ sources: newSources });
   }
@@ -63,24 +103,49 @@ export default class Challange extends React.Component {
     const { challange } = this.props;
     const { sources } = this.state;
 
+    const LifeLinesDispalyed = this.state.lifeLinesUsed.map(val =>
+      challange.lifeLines.find(
+        ({ id }) => (id === val),
+      ).text,
+    );
+
     return (
       <div>
-        <p>{challange.text}</p>
+        <ChallangeCard>
+          <NewsPaper>
+            <header>
+              <span>{`Poziom: ${challange.difficulty}`}</span>
+              <span>{`Kategoria: ${challange.category}`}</span>
+            </header>
+            <h1>{challange.text}</h1>
+          </NewsPaper>
 
-        <p>{challange.difficulty}</p>
+          <main>
+            <TrueFalseButtons
+              onSubmitTrue={this.onSubmitTrue}
+              onSubmitFalse={this.onSubmitFalse}
+            />
 
-        <div>
-          <InputsList sources={sources} onInput={this.onSourcesInput} />
-        </div>
+            <LifeLinesList
+              lifeLines={challange.lifeLines}
+              used={this.state.lifeLinesUsed}
+              onClick={this.useLifeline}
+            />
 
-        <LifeLinesList
-          lifeLines={challange.lifeLines}
-          used={this.state.lifeLinesUsed}
-          onClick={this.useLifeline}
-        />
+            {LifeLinesDispalyed}
 
-        <button onClick={this.onSubmitTrue}>Prawda</button>
-        <button onClick={this.onSubmitFalse}>Fałsz</button>
+            <InputsList
+              sources={sources}
+              onSourceInput={this.onSourceInput}
+              onTextInput={this.onTextInput}
+            />
+            <br />
+
+            <div className="flex justify-center">
+              <button>Wyślij</button>
+            </div>
+          </main>
+        </ChallangeCard>
       </div>
     );
   }

@@ -41,13 +41,25 @@ module.exports = {
 
   module: {
     rules: [...config.rules, {
-      test: /\.css$/,
+      test: /\.s[ca]ss$/,
       use: [{
         loader: "style-loader",
         options: {
           sourceMap: true,
         },
       }].concat(cssLoaders(iP)),
+    },
+    {
+      test: /\.css$/,
+      use: [{
+        loader: "css-loader",
+        options: {
+          sourceMap: !iP,
+          modules: true,
+          importLoaders: 2,
+          localIdentName: "[name]__[local]__[hash:base64:5]",
+        },
+      }],
     }],
   },
 

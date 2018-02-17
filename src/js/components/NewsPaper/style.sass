@@ -1,0 +1,38 @@
+.newsPaper
+  display: flex
+  position: relative
+  flex-direction: column
+  margin-left: -16px
+  padding: 16px 16px 0
+  background: $newspaper-bg
+  color: $newspaper-text
+  box-shadow: 10px 0 10px rgba(0,0,0,0.1), 0 0 30px rgba(0,0,0,0.2)
+
+  img
+    width: 100%
+
+  header
+    display: flex
+    justify-content: space-between
+    margin-bottom: 4px
+    padding: 8px
+    background: $newspaper-header-bg
+    color: $newspaper-header-text
+
+  h1
+    margin: 0
+    padding: 16px 0
+    font-weight: 800
+    text-align: left
+    text-transform: uppercase
+
+  &::after
+    position: absolute
+    bottom: 0
+    left: 8px
+    width: 100%
+    height: calc(100% - 8px)
+    border-radius: 0 0 8px
+    background: $newspaper-bg
+    content: ""
+    z-index: -1

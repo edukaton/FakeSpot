@@ -1,11 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import InputLine from "./InputLine";
+
+import styles from "./styles.sass";
 
 export default class InputsList extends React.PureComponent {
   static propTypes = {
-    onInput: PropTypes.func.isRequired,
-    sources: PropTypes.array.isRequired,
     key: PropTypes.string,
+    sources: PropTypes.array.isRequired,
+    onTextInput: PropTypes.func.isRequired,
+    onSourceInput: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -13,27 +17,34 @@ export default class InputsList extends React.PureComponent {
   }
 
   render() {
-    const { onInput, sources, key } = this.props;
+    const {
+      onSourceInput, onTextInput, sources, key,
+    } = this.props;
 
     const inputsList = sources.map((val, i) => (
-      <input
-        type="text"
-        value={val}
-        onInput={onInput(i)}
-        onChange={onInput(i)}
+      <InputLine
         key={`${key}-${i}`}
-      />),
-    );
+        value={val}
+        onSourceInput={onSourceInput(i)}
+        onTextInput={onTextInput(i)}
+      />
+    ));
+
     inputsList.push(
-      <input
-        type="text"
-        onInput={onInput(inputsList.length)}
-        onChange={onInput(inputsList.length)}
-        value=""
-        key={`${key}-${inputsList.length}`}
-      />,
+      (
+        <InputLine
+          key={`${key}-${inputsList.length}`}
+          value={{ source: "", text: "" }}
+          onSourceInput={onSourceInput(inputsList.length)}
+          onTextInput={onTextInput(inputsList.length)}
+        />
+      ),
     );
 
-    return inputsList;
+    return (
+      <div className={styles.container}>
+        {inputsList}
+      </div>
+    );
   }
 }
