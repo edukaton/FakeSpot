@@ -30,10 +30,12 @@
     "deploy": "sh ./build/deploy.sh",
     "clean": "rimraf dist",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --config ./build/webpack.prod.js -p --progress --hide-modules",
-    "monitor": "npm run clean && cross-env NODE_ENV=production MONITOR=true webpack --config ./build/webpack.prod.js -p --progress --hide-modules"
+    "monitor": "npm run clean && cross-env NODE_ENV=production MONITOR=true webpack --config ./build/webpack.prod.js -p --progress --hide-modules",
+    "server": "node ./server/index.js"
   },
   "dependencies": {
     "history": "^4.7.2",
+    "json-server": "^0.12.1",
     "moment": "^2.20.1",
     "offline-plugin": "^4.8.4",
     "prop-types": "^15.6.0",
