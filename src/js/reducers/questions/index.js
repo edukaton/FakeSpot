@@ -3,9 +3,23 @@ const initialState = {
   fetching: false,
   data: [
     {
+      id: 0,
       text: "Znajdująca się na skraju Układu Słonecznego Planeta X zagraża Ziemi!",
       isTrue: true,
       wasAnswered: false,
+      difficulty: 0,
+      lifeLines: [
+        {
+          id: 0,
+          title: "1. Koło ratunkowe",
+          text: "",
+        },
+        {
+          id: 1,
+          title: "2. Koło ratunkowe",
+          text: "",
+        },
+      ],
       userAnswer: {
         sources: {},
         isTrue: null,

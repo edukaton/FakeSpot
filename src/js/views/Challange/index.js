@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import InputsList from "../../components/InputsList/";
+import LifeLinesList from "../../components/LifeLinesList/";
 
 const mapStateToProps = ({ questions }) => ({
   challange: questions.data[questions.data.length - 1],
@@ -18,6 +19,7 @@ export default class Challange extends React.Component {
     super();
     this.state = {
       sources: [],
+      lifeLinesUsed: [],
     };
   }
 
@@ -51,6 +53,12 @@ export default class Challange extends React.Component {
     });
   }
 
+  useLifeline = n => () => {
+    this.setState({
+      lifeLinesUsed: [...this.state.lifeLinesUsed, n],
+    });
+  }
+
   render() {
     const { challange } = this.props;
     const { sources } = this.state;
@@ -59,9 +67,17 @@ export default class Challange extends React.Component {
       <div>
         <p>{challange.text}</p>
 
+        <p>{challange.difficulty}</p>
+
         <div>
           <InputsList sources={sources} onInput={this.onSourcesInput} />
         </div>
+
+        <LifeLinesList
+          lifeLines={challange.lifeLines}
+          used={this.state.lifeLinesUsed}
+          onClick={this.useLifeline}
+        />
 
         <button onClick={this.onSubmitTrue}>Prawda</button>
         <button onClick={this.onSubmitFalse}>Fałsz</button>
