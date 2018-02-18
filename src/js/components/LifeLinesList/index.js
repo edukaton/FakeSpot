@@ -24,8 +24,11 @@ export default class LifeLinesList extends React.PureComponent {
     });
 
     return (
-      <div className={styles.container}>
-        {list}
+      <div className={`${styles.container} flex-col`}>
+        <p className={styles.header}>Koła ratunkowe <i className="material-icons">keyboard_arrow_down</i></p>
+        <div className="flex">
+          {list}
+        </div>
       </div>
     );
   }

@@ -21,7 +21,10 @@ export default class Challange extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      sources: [{}],
+      sources: [{
+        source: "",
+        text: "",
+      }],
       lifeLinesUsed: [],
       optionSelected: null,
       notificationIndex: 0,
@@ -76,10 +79,10 @@ export default class Challange extends React.Component {
   }
 
   onSourceInput = n => (e) => {
-    let newSources = [...this.state.sources];
+    const newSources = [...this.state.sources];
     newSources[n] = e.target.value;
 
-    newSources = newSources.filter(val => val !== "");
+    // newSources = newSources.filter(val => val !== "");
 
     this.setState({ sources: newSources });
   }
@@ -147,7 +150,7 @@ export default class Challange extends React.Component {
   submitAnswer = () => {
     const { dispatch } = this.props;
 
-    if (this.state.optionSelected === null || this.state.sources.length === 0) {
+    if (this.state.optionSelected === null || this.state.sources[0].source === "") {
       return;
     }
 
@@ -184,13 +187,6 @@ export default class Challange extends React.Component {
             selected={this.state.optionSelected}
           />
 
-          <LifeLinesList
-            lifeLines={challange.lifeLines}
-            used={this.state.lifeLinesUsed}
-            onClick={this.useLifeline}
-            unlocked={this.state.lifelinesUnlocked}
-          />
-
           <LifeLinesDisplayed
             lifeLines={challange.lifeLines}
             lifeLinesUsed={this.state.lifeLinesUsed}
@@ -200,12 +196,17 @@ export default class Challange extends React.Component {
             sources={sources}
             onSourceInput={this.onSourceInput}
           />
-          <br />
 
           <div className="flex justify-center">
             <button onClick={this.submitAnswer}>Wyślij</button>
           </div>
         </main>
+        <LifeLinesList
+          lifeLines={challange.lifeLines}
+          used={this.state.lifeLinesUsed}
+          onClick={this.useLifeline}
+          unlocked={this.state.lifelinesUnlocked}
+        />
       </ChallangeCard>
     );
   }
