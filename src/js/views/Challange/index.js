@@ -8,7 +8,6 @@ import InputsList from "../../components/InputsList/";
 import ChallangeCard from "../../components/ChallangeCard";
 import LifeLinesList from "../../components/LifeLinesList/";
 import TrueFalseButtons from "../../components/TrueFalseButtons";
-import LifeLinesDisplayed from "../../components/LifeLinesDisplayed";
 
 const mapStateToProps = ({ questions, notifications }) => ({
   challange: questions.data[questions.data.length - 1],
@@ -52,7 +51,7 @@ export default class Challange extends React.Component {
     Notification.requestPermission()
       .then((result) => {
         if (result === "granted") {
-          // this.sendNotification(60);
+          this.sendNotification(60);
         }
       });
 
@@ -88,7 +87,7 @@ export default class Challange extends React.Component {
   }
 
   onSourceInput = n => (e) => {
-    let newSources = [...this.state.sources];
+    const newSources = [...this.state.sources];
     if (!newSources[n]) {
       newSources[n] = {
         source: "",
@@ -98,7 +97,7 @@ export default class Challange extends React.Component {
 
     newSources[n] = { source: e.target.value, text: newSources[n].text };
 
-    newSources = newSources.filter(val => (val.source !== "" || val.text !== ""));
+    // newSources = newSources.filter(val => (val.source !== "" || val.text !== ""));
 
     this.setState({ sources: newSources });
   }
@@ -185,11 +184,6 @@ export default class Challange extends React.Component {
             onSubmitTrue={this.onSubmitTrue}
             onSubmitFalse={this.onSubmitFalse}
             selected={this.state.optionSelected}
-          />
-
-          <LifeLinesDisplayed
-            lifeLines={challange.lifeLines}
-            lifeLinesUsed={this.state.lifeLinesUsed}
           />
 
           <InputsList

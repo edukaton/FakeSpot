@@ -3,7 +3,8 @@ import { completeQuestion } from "../user";
 export const fetchQuestion = () => (dispatch, getState) => {
   const { lastQuestion } = getState().questions;
 
-  fetch(`/api/questions/${lastQuestion}`)
+  // fetch(`/api/questions/${lastQuestion}`)
+  fetch("/api/question")
     .then(res => res.json())
     .then(res => dispatch({ type: "QUESTION_FETCHED", payload: res }));
 };

@@ -5,7 +5,7 @@ const initialState = {
     username: "Andrzej",
     badgesCollected: [0, 2],
     points: 0,
-    avatar: "/avatar.png",
+    avatar: "/avatar.gif",
     questionsCompleted: 0,
   },
 };
