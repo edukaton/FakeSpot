@@ -12,7 +12,7 @@ export default class Component extends React.Component {
 
   changeImg = () => {
     this.setState({
-      easteregg: true,
+      easteregg: !this.state.easteregg,
     });
   }
 
