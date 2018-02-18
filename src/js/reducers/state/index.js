@@ -1,6 +1,6 @@
 const initialState = {
-  state: "playing",
-  // state: "splash",
+  // state: "playing",
+  state: "splash",
 };
 
 export default function reducer(state = initialState, action) {
