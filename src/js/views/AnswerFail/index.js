@@ -19,7 +19,7 @@ export default class AnswerSuccess extends React.Component {
         <main className="flex flex-col">
           <div className="flex flex-col justify-center text-center">
             <p className="mt-2">
-              <span className={`inline-block ${styles.title}`}>No i chuj.</span>
+              <span className={`inline-block ${styles.title}`}>Nie udało się.</span>
             </p>
           </div>
           <button className={`flat self-end ${styles.nextButton}`} onClick={this.playAgain}>Gram dalej &gt;</button>

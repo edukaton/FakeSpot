@@ -8,7 +8,6 @@ export default class InputsList extends React.PureComponent {
   static propTypes = {
     key: PropTypes.string,
     sources: PropTypes.array.isRequired,
-    onTextInput: PropTypes.func.isRequired,
     onSourceInput: PropTypes.func.isRequired,
   }
 
@@ -18,28 +17,26 @@ export default class InputsList extends React.PureComponent {
 
   render() {
     const {
-      onSourceInput, onTextInput, sources, key,
+      onSourceInput, sources, key,
     } = this.props;
 
     const inputsList = sources.map((val, i) => (
       <InputLine
         key={`${key}-${i}`}
-        value={val}
+        // value={val}
         onSourceInput={onSourceInput(i)}
-        onTextInput={onTextInput(i)}
       />
     ));
 
-    inputsList.push(
-      (
-        <InputLine
-          key={`${key}-${inputsList.length}`}
-          value={{ source: "", text: "" }}
-          onSourceInput={onSourceInput(inputsList.length)}
-          onTextInput={onTextInput(inputsList.length)}
-        />
-      ),
-    );
+    // inputsList.push(
+    //   (
+    //     <InputLine
+    //       key={`${key}-${inputsList.length}`}
+    //       value={{ source: "", text: "" }}
+    //       onSourceInput={onSourceInput(inputsList.length)}
+    //     />
+    //   ),
+    // );
 
     return (
       <div className={styles.container}>

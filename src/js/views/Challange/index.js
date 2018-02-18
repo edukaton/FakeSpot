@@ -21,7 +21,7 @@ export default class Challange extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      sources: [],
+      sources: [{}],
       lifeLinesUsed: [],
       optionSelected: null,
       notificationIndex: 0,
@@ -66,8 +66,8 @@ export default class Challange extends React.Component {
         });
 
         const notification = new Notification(`Odblokowałeś ${this.state.lifelinesUnlocked}. koło ratunkowe!`);
-      }, 1000 * 60 * 5);
-    }, 1000 * 60 * 2);
+      }, 1000 * 30);
+    }, 1000 * 15);
   }
 
   componentWillUnmount() {
@@ -199,7 +199,6 @@ export default class Challange extends React.Component {
           <InputsList
             sources={sources}
             onSourceInput={this.onSourceInput}
-            onTextInput={this.onTextInput}
           />
           <br />
 

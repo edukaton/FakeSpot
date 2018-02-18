@@ -37,7 +37,7 @@ export default class AnswerSuccess extends React.Component {
             </p>
             <p className="mt-2">News:</p>
             <p className="mt-2">„{ challange.text }”</p>
-            <p className="mt-2 text-lg font-bold">jest { challange.isTrue ? "prawdziwy" : "fałszywy" }</p>
+            <p className="mt-2 text-lg font-bold">to { challange.isTrue ? "prawda" : "fałsz" }!</p>
           </div>
 
           <ChallangeCardFrame>

@@ -1,12 +1,12 @@
 .container
   display: flex
   justify-content: space-between
-  margin: 0 32px
+  // margin: 0 32px
   padding: 32px 0
-  border: $buttons-border solid
-  border-width: 0 16px 16px
-  border-radius: 0 0 2px 2px
-  background: $buttons-stripes-light
+  // border: $buttons-border solid
+  // border-width: 0 16px 16px
+  // border-radius: 0 0 2px 2px
+  // background: $buttons-stripes-light
   // background: repeating-linear-gradient(-45deg, $buttons-stripes-light, $buttons-stripes-light 30px, $buttons-stripes-dark 30px, $buttons-stripes-dark 60px )
 
 .buttonContainer
@@ -16,19 +16,25 @@
   justify-content: center
   box-sizing: border-box
 
+  &:first-child
+    padding-right: 16px
+
+  &:last-child
+    padding-left: 16px
+
   button
     display: flex
     position: relative
     align-items: center
     justify-content: center
-    width: 50%
+    width: 100%
     padding: 0
-    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out
-    border-radius: 50%
+    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out, color .2s ease-in-out
+    border-radius: 2px
     outline: 0
     color: $white
     font-size: 1.5rem
-    text-transform: uppercase
+    // text-transform: uppercase
     cursor: pointer
     appearance: none
 
@@ -39,42 +45,44 @@
       transform: scale(1)
 
     &.true
-      border: 6px $button-border-success solid
+      border: 8px $button-border-2-success solid
       background: $button-bg-success
 
       &.checked
         transform: scale(1.05)
-        box-shadow: 0 0 0 6px $button-border-2-success, 0 0 0 10px $buttons-border-active, 0 0 20px 10px $buttons-shadow-idle
+        color: darken($button-bg-success, 25%)
+        box-shadow: 0 0 20px 2px $button-bg-success
 
         &:hover
-          box-shadow: 0 0 0 6px $button-border-2-success, 0 0 0 10px $buttons-border-active, 0 0 20px 6px $buttons-shadow-hover
+          box-shadow: 0 0 20px 2px $button-bg-success
 
       &:hover
-        box-shadow: 0 0 0 6px $button-border-2-success, 0 0 20px 6px $buttons-shadow-hover
+        box-shadow: 0 0 20px 0 $buttons-shadow-hover
 
       &, &:active
-        box-shadow: 0 0 0 6px $button-border-2-success, 0 0 20px 6px $buttons-shadow-idle
+        box-shadow: 0 0 20px 6px $buttons-shadow-idle
 
     &.false
-      border: 6px $button-border-fail solid
+      border: 8px $button-border-2-fail solid
       background: $button-bg-fail
 
       &.checked
         transform: scale(1.05)
-        box-shadow: 0 0 0 6px $button-border-2-fail, 0 0 0 10px $buttons-border-active, 0 0 20px 10px $buttons-shadow-idle
+        color: $button-bg-checked-fail
+        box-shadow: 0 0 20px 2px $button-bg-fail
 
         &:hover
-          box-shadow: 0 0 0 6px $button-border-2-fail, 0 0 0 10px $buttons-border-active, 0 0 20px 6px $buttons-shadow-hover
+          box-shadow: 0 0 20px 2px $button-bg-fail
 
       &:hover
-        box-shadow: 0 0 0 6px $button-border-2-fail, 0 0 20px 6px rgba(0, 0, 0, 0.3)
+        box-shadow: 0 0 10px 6px $buttons-shadow-hover
 
       &, &:active
-        box-shadow: 0 0 0 6px $button-border-2-fail, 0 0 20px 6px rgba(0, 0, 0, 0.1)
+        box-shadow: 0 0 20px 6px $buttons-shadow-idle
 
     &::after
       display: block
-      padding-bottom: 100%
+      padding-bottom: 33%
       content: ""
 
     span

@@ -16,7 +16,8 @@ export default class LifeLinesList extends React.PureComponent {
           key={`lifeLine-${val.id}`}
           disabled={!disabled}
           onClick={disabled ? onClick(val.id) : () => {}}
-          title={!disabled ? "Aby użyć tego koła musisz jeszcze trochę poczekać" : ""}
+          title={!disabled ? "Zanim użyjesz koła ratunkowego, spróbuj odpowiedzieć sam" : ""}
+          target={(i === 1) ? "_blank" : null}
         >{val.title}
         </button>
       );
