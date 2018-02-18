@@ -9,5 +9,9 @@
     background: none
     box-shadow: none
 
+    &[disabled]
+      background: transparentize($white, .5)
+      cursor: default
+
     &:last-child
       border-right: 0

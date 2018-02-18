@@ -1,0 +1,41 @@
+.avatar
+  display: flex
+  position: relative
+  align-items: center
+  justify-content: center
+  width: 40%
+  margin-bottom: 32px
+  border-radius: 50%
+  background: $avatar-background
+  overflow: hidden
+
+  &::after
+    display: block
+    padding-bottom: 100%
+    content: ""
+
+  img
+    position: absolute
+    width: 75%
+
+  &.easteregg
+    animation: disco 1s infinite
+
+    img
+      width: 100%
+
+@keyframes disco
+  0%, 19.99%
+    background: #2196F3
+
+  20%, 39.99%
+    background: #F44336
+
+  40%, 59.99%
+    background: #673AB7
+
+  60%, 79.99%
+    background: #4CAF50
+
+  80%, 100%
+    background: #E91E63

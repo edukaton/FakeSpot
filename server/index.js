@@ -2,6 +2,8 @@
 const jsonServer = require("json-server");
 const path = require("path");
 
+const { questions } = require("./db.json");
+
 const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, "db.json"));
 const middlewares = jsonServer.defaults();
@@ -13,6 +15,10 @@ server.use(jsonServer.bodyParser);
 // Add custom routes before JSON Server router
 server.post("/echo", (req, res) => {
   res.jsonp(req.body);
+});
+
+server.get("/question", (req, res) => {
+  res.jsonp(questions[Math.floor(questions.length * Math.random())]);
 });
 
 // To handle POST, PUT and PATCH you need to use a body-parser

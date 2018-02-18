@@ -4,12 +4,15 @@ import PropTypes from "prop-types";
 
 import Challange from "../Challange";
 import AnswerSuccess from "../AnswerSuccess";
+import AnswerFail from "../AnswerFail";
 
 import Sidebar from "../../components/Sidebar/";
 import Container from "../../components/Container";
 
-const mapStateToProps = ({ state }) => ({
+const mapStateToProps = ({ state, badges, user }) => ({
   state: state.state,
+  badges: badges.data,
+  user: user.data,
 });
 
 @connect(mapStateToProps)
@@ -32,14 +35,22 @@ export default class Main extends React.Component {
         mainComponent = <AnswerSuccess />;
         break;
       }
+      case "answerFail": {
+        mainComponent = <AnswerFail />;
+        break;
+      }
 
       // no default
     }
 
     return (
-      <Container>
-        <Sidebar />
-        { mainComponent }
+      <Container
+        main={mainComponent}
+      >
+        <Sidebar
+          badges={this.props.badges}
+          user={this.props.user}
+        />
       </Container>
     );
   }

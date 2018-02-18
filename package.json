@@ -17,7 +17,7 @@
         "href": "/favicon.ico",
         "rel": "icon"
       },
-      "https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:400,800"
+      "https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:400,700,800"
     ],
     "lang": "pl-PL",
     "appMountId": "app"
