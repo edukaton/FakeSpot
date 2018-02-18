@@ -1,34 +1,7 @@
 const initialState = {
   fetched: false,
   fetching: false,
-  data: [
-    {
-      id: 0,
-      text: "Znajdująca się na skraju Układu Słonecznego Planeta X zagraża Ziemi!",
-      difficulty: 0,
-      category: "polityka",
-      isTrue: true,
-      questionComment: "Planeta istnieje ale nie zagraża światu ",
-      lifeLines: [
-        {
-          id: 0,
-          title: "1. Koło ratunkowe",
-          text: "google keywords",
-        },
-        {
-          id: 1,
-          title: "2. Koło ratunkowe",
-          text: "dobre źródła",
-        },
-      ],
-
-      wasAnswered: false,
-      userAnswer: {
-        sources: [],
-        isTrue: null,
-      },
-    },
-  ],
+  data: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -39,8 +12,6 @@ export default function reducer(state = initialState, action) {
   const deepDataCopy = Object.assign({}, newState.data[newState.data.length - 1]);
   newState.data[newState.data.length - 1] = deepDataCopy;
 
-  // console.log(action);
-
   switch (action.type) {
     case "QUESTION/USER_SUBMIT": {
       newState.data[newState.data.length - 1].userAnswer = action.payload;
@@ -50,8 +21,23 @@ export default function reducer(state = initialState, action) {
     }
 
     case "QUESTION_FETCHED": {
-      console.log(action.payload);
+      newState.fetched = true;
+
+      newState.data.push(
+        {
+          ...action.payload,
+
+          wasAnswered: false,
+          userAnswer: {
+            sources: [],
+            isTrue: null,
+          },
+        },
+      );
+
+      return newState;
     }
+
 
     // no default
   }

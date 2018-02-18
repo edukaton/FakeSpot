@@ -1,7 +1,7 @@
 import React from "react";
 
 const LifeLinesDisplayed = ({ lifeLines, lifeLinesUsed }) => {
-  const elements = lifeLinesUsed.map((val, i) => {
+  const elements = lifeLinesUsed.map((val) => {
     const line = lifeLines.find(
       ({ id }) => (id === val),
     );

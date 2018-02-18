@@ -1,9 +1,15 @@
 import { combineReducers } from "redux";
 
-import questions from "./questions";
+import user from "./user";
 import state from "./state";
+import badges from "./badges";
+import questions from "./questions";
+import notifications from "./notifications";
 
 export default combineReducers({
-  questions,
+  user,
   state,
+  badges,
+  questions,
+  notifications,
 });
