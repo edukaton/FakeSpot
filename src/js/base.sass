@@ -39,17 +39,17 @@
     box-shadow: 0 0 .2em rgba(0, 0, 0, 0.2)
     cursor: pointer
 
-    &:active, &:focus
-      outline: none
+    &:not([disabled])
+      &:active, &:focus
+        outline: none
 
+      &:hover, &:focus
+        transform: scale(1.05)
+        box-shadow: 0 0 .3em rgba(0, 0, 0, 0.5)
 
-    &:hover, &:focus
-      transform: scale(1.05)
-      box-shadow: 0 0 .3em rgba(0, 0, 0, 0.5)
-
-    &:active
-      transform: scale(1)
-      box-shadow: 0 0 .2em rgba(0, 0, 0, 0.2)
+      &:active
+        transform: scale(1)
+        box-shadow: 0 0 .2em rgba(0, 0, 0, 0.2)
 
     &.flat
       border-radius: 0
