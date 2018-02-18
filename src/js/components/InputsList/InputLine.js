@@ -8,7 +8,8 @@ const InputLine = ({
 }) => (
   <div className={styles.inputLine}>
     <input
-      type="text"
+      type="url"
+      required
       // value={value.source}
       onInput={onSourceInput}
       onChange={onSourceInput}

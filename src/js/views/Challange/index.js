@@ -188,7 +188,7 @@ export default class Challange extends React.Component {
           Znajdź odpowiedź, wynajdując w Internecie wiarygodne źródło
         </div>
 
-        <main style={{ paddingTop: 0 }}>
+        <form style={{ paddingTop: 0 }} onSubmit={this.submitAnswer}>
           <TrueFalseButtons
             onSubmitTrue={this.onSubmitTrue}
             onSubmitFalse={this.onSubmitFalse}
@@ -200,10 +200,8 @@ export default class Challange extends React.Component {
             onSourceInput={this.onSourceInput}
           />
 
-          <SubmitButton
-            submitAnswer={this.submitAnswer}
-          />
-        </main>
+          <SubmitButton />
+        </form>
         <LifeLinesList
           lifeLines={challange.lifeLines}
           used={this.state.lifeLinesUsed}

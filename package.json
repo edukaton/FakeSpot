@@ -9,12 +9,12 @@
     "ghbranch": "gh-pages"
   },
   "config": {
-    "title": "Przypis powszechny",
+    "title": "FakeSpot",
     "mobile": true,
     "baseHref": "/",
     "links": [
       {
-        "href": "/favicon.ico",
+        "href": "/favicon.png",
         "rel": "icon"
       },
       "https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:300,400,700,800"

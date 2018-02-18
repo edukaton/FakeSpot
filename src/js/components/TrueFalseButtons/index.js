@@ -5,20 +5,23 @@ import styles from "./styles.sass";
 const TrueFalseButtons = ({ onSubmitTrue, onSubmitFalse, selected }) => (
   <div className={styles.container}>
     <div className={styles.buttonContainer}>
-      <button
+      <label
         className={`${styles.true} ${(selected === true) ? styles.checked : ""}`}
         onClick={onSubmitTrue}
+        type="button"
       >
+        <input type="radio" name="asd" value="true" required />
         <span>Prawda</span>
-      </button>
+      </label>
     </div>
     <div className={styles.buttonContainer}>
-      <button
+      <label
         className={`${styles.false} ${(selected === false) ? styles.checked : ""}`}
         onClick={onSubmitFalse}
       >
+        <input type="radio" name="asd" value="false" required />
         <span>Fałsz</span>
-      </button>
+      </label>
     </div>
   </div>
 );

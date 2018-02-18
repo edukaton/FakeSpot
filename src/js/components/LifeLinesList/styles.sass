@@ -24,7 +24,7 @@
     .content
       height: 192px
 
-  button
+  .btn
     display: flex
     flex: 1
     align-items: center
@@ -33,9 +33,14 @@
     transition: opacity .2s ease-in-out, transform .2s ease-in-out
     border-radius: 0
     background: none
+    color: $white
     font-size: 1rem
+    text-align: center
     box-shadow: none
     word-break: break-word
+
+    &:not([href])
+      text-decoration: none
 
     &::after, &::before
       display: none

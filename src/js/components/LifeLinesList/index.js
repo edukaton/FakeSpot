@@ -23,7 +23,8 @@ export default class LifeLinesList extends React.PureComponent {
 
 
     const list = lifeLines.map((val, i) => {
-      const disabled = unlocked > i;
+      // const disabled = unlocked > i;
+      const disabled = true;
 
       const isUsed = used.indexOf(val.id) >= 0;
 
@@ -33,20 +34,22 @@ export default class LifeLinesList extends React.PureComponent {
             key={`lifeLine-${val.id}`}
             disabled={!disabled}
             onClick={disabled ? onClick(val.id) : () => {}}
-            title={!disabled ? "Zanim użyjesz koła ratunkowego, spróbuj odpowiedzieć sam" : ""}
+            title={disabled ? "Zanim użyjesz koła ratunkowego, spróbuj odpowiedzieć sam" : ""}
             target={(i === 1) ? "_blank" : null}
+            className={styles.btn}
           >Podpowiedź
           </button>
         );
       }
 
       return (
-        <button
+        <a
           key={`lifeLine-${val.id}`}
+          href={(i === 1) ? val.text : null}
           target={(i === 1) ? "_blank" : null}
-          className={styles.used}
+          className={`${styles.used} ${styles.btn}`}
         >{val.text}
-        </button>
+        </a>
       );
     });
 
