@@ -31,17 +31,25 @@ export default class AnswerSuccess extends React.Component {
     return (
       <ChallangeCard>
         <main className="flex flex-col">
+          <p className={`mt-2 text-center ${styles.resultMsg}`}>
+            <span className={`inline-block ${styles.title}`}>Dobrze się spisałeś!</span>
+          </p>
           <div className="flex flex-col justify-center text-center">
-            <p className="mt-2">
-              <span className={`inline-block ${styles.title}`}>Dobrze się spisałeś!</span>
+            <p className={`mt-4 ${styles.news}`}>„{ challange.text }”</p>
+            <p className="mt-2 text-lg font-bold">
+              to
+              <span className={challange.isTrue ? styles.true : styles.false}>
+                { challange.isTrue ? " prawdziwa " : " fałszywa " }
+              </span>
+               informacja!
             </p>
-            <p className="mt-2">News:</p>
-            <p className="mt-2">„{ challange.text }”</p>
-            <p className="mt-2 text-lg font-bold">to { challange.isTrue ? "prawda" : "fałsz" }!</p>
           </div>
 
           <ChallangeCardFrame>
-            <header>{challange.questionComment}</header>
+            <header>
+              {/* <h>Komentarz</h> */}
+              <p>{challange.questionComment}</p>
+            </header>
             <main>
               <div className={`flex ${styles.charts}`}>
                 <div className={styles.chart}>
@@ -53,13 +61,17 @@ export default class AnswerSuccess extends React.Component {
                   <p>60% graczy wskazało to<br />źródło co ty</p>
                 </div>
               </div>
-              <br />
-              <p>Najlepsze źródło</p>
+            </main>
+            <div className={styles.comment}>
+              <h>Gdzie dobrze sprawdzać taką informację?</h>
+              <p>{challange.bestSourceComment}</p>
+            </div>
+            <main>
+              <p className={styles.sourceTitle}>Polecane źródło</p>
               <p className={styles.bestSource}>
                 <a href={challange.bestSource}>{challange.bestSource}</a>
               </p>
             </main>
-            <footer>{challange.bestSourceComment}</footer>
           </ChallangeCardFrame>
           <button className={`flat self-end ${styles.nextButton}`} onClick={this.playAgain}>Gram dalej &gt;</button>
         </main>
