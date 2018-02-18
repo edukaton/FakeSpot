@@ -1,7 +1,7 @@
 import { completeQuestion } from "../user";
 
 export const fetchQuestion = () => (dispatch) => {
-  fetch("http://localhost:3000/question")
+  fetch("/api/question")
     .then(res => res.json())
     .then(res => dispatch({ type: "QUESTION_FETCHED", payload: res }));
 };

@@ -26,16 +26,27 @@ const webpackConfig = {
   resolve: config.resolve,
 
   module: {
-    rules: [
-      ...config.rules,
-      {
-        test: /\.s[ca]ss$/,
-        use: ExtractSASS.extract({
-          fallback: "style-loader",
-          use: cssLoaders(iP),
-        }),
-      },
-    ],
+    rules: [...config.rules, {
+      test: /\.s[ca]ss$/,
+      use: [{
+        loader: "style-loader",
+        options: {
+          sourceMap: true,
+        },
+      }].concat(cssLoaders(iP)),
+    },
+    {
+      test: /\.css$/,
+      use: [{
+        loader: "css-loader",
+        options: {
+          sourceMap: !iP,
+          modules: true,
+          importLoaders: 2,
+          localIdentName: "[name]__[local]__[hash:base64:5]",
+        },
+      }],
+    }],
   },
 
   plugins: [

@@ -35,6 +35,9 @@ module.exports = {
     quiet: true,
     historyApiFallback: true,
     contentBase: `${__dirname}/../static`,
+    proxy: {
+      "/api": "http://localhost:3000",
+    },
   },
 
   devtool: "#cheap-module-eval-source-map",

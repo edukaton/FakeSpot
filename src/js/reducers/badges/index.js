@@ -4,7 +4,7 @@ const initialState = {
   data: [
     {
       id: 0,
-      name: "a",
+      name: "Osiągnięcie #1",
       img: "/badge2.png",
     },
     {
@@ -14,7 +14,7 @@ const initialState = {
     },
     {
       id: 2,
-      name: "c",
+      name: "Osiągnięcie #3",
       img: "/badge2.png",
     },
   ],

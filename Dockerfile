@@ -7,4 +7,6 @@ COPY package*.json ./
 RUN npm install
 RUN npm run build
 
-COPY dist .
+COPY dist dist
+COPY server server
+CMD ["npm", "run", "server"]

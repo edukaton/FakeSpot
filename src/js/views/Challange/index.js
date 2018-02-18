@@ -58,12 +58,14 @@ export default class Challange extends React.Component {
         lifelinesUnlocked: this.state.lifelinesUnlocked + 1,
       });
 
-      console.log(this.state.lifelinesUnlocked);
+      const notification = new Notification(`Odblokowałeś ${this.state.lifelinesUnlocked}. koło ratunkowe!`);
 
       this.timer2 = setTimeout(() => {
         this.setState({
           lifelinesUnlocked: this.state.lifelinesUnlocked + 1,
         });
+
+        const notification = new Notification(`Odblokowałeś ${this.state.lifelinesUnlocked}. koło ratunkowe!`);
       }, 1000 * 60 * 5);
     }, 1000 * 60 * 2);
   }
