@@ -57,6 +57,7 @@ export default class Challange extends React.Component {
       this.setState({
         lifelinesUnlocked: this.state.lifelinesUnlocked + 1,
       });
+
       console.log(this.state.lifelinesUnlocked);
 
       this.timer2 = setTimeout(() => {
@@ -65,6 +66,11 @@ export default class Challange extends React.Component {
         });
       }, 1000 * 60 * 5);
     }, 1000 * 60 * 2);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    clearInterval(this.timer2);
   }
 
   onSourceInput = n => (e) => {

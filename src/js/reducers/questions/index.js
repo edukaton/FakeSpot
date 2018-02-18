@@ -12,8 +12,6 @@ export default function reducer(state = initialState, action) {
   const deepDataCopy = Object.assign({}, newState.data[newState.data.length - 1]);
   newState.data[newState.data.length - 1] = deepDataCopy;
 
-  // console.log(action);
-
   switch (action.type) {
     case "QUESTION/USER_SUBMIT": {
       newState.data[newState.data.length - 1].userAnswer = action.payload;

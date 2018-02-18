@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import Challange from "../Challange";
+import Splash from "../Splash";
 import AnswerSuccess from "../AnswerSuccess";
 import AnswerFail from "../AnswerFail";
 
@@ -27,6 +28,10 @@ export default class Main extends React.Component {
     let mainComponent = null;
 
     switch (state) {
+      case "splash": {
+        mainComponent = <Splash />;
+        break;
+      }
       case "playing": {
         mainComponent = <Challange />;
         break;
