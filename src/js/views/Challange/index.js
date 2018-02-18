@@ -8,6 +8,7 @@ import InputsList from "../../components/InputsList/";
 import ChallangeCard from "../../components/ChallangeCard";
 import LifeLinesList from "../../components/LifeLinesList/";
 import TrueFalseButtons from "../../components/TrueFalseButtons";
+import SubmitButton from "../../components/SubmitButton";
 
 import styles from "../../components/ChallangeCard/style.sass";
 
@@ -53,7 +54,7 @@ export default class Challange extends React.Component {
     Notification.requestPermission()
       .then((result) => {
         if (result === "granted") {
-          this.sendNotification(60);
+          this.sendNotification(10);
         }
       });
 
@@ -177,13 +178,13 @@ export default class Challange extends React.Component {
 
     return (
       <ChallangeCard>
-        
+
         <NewsPaper>
           <h1>{challange.text}</h1>
         </NewsPaper>
-        
-        <div className={styles.questionHeader}>
-          To prawdziwa informacja czy fake? <br/>
+
+        <div className={`${styles.questionHeader} leading-normal`}>
+          To prawdziwa informacja czy fake? <br />
           Znajdź odpowiedź, wynajdując w Internecie wiarygodne źródło
         </div>
 
@@ -199,9 +200,9 @@ export default class Challange extends React.Component {
             onSourceInput={this.onSourceInput}
           />
 
-          <div className="flex justify-center">
-            <button onClick={this.submitAnswer}>Wyślij</button>
-          </div>
+          <SubmitButton
+            submitAnswer={this.submitAnswer}
+          />
         </main>
         <LifeLinesList
           lifeLines={challange.lifeLines}

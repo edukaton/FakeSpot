@@ -1,11 +1,17 @@
 .badges
+  flex-wrap: wrap
   padding: 24px 0
 
   .badge
+    position: relative
     width: 33.33%
-    padding: 8px
     padding-top: 0
     box-sizing: border-box
 
-    &.disabled
-      filter: grayscale(1)
+    &::after
+      display: block
+      padding-bottom: 100%
+      content: ""
+
+    img
+      position: absolute

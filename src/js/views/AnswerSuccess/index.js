@@ -47,7 +47,6 @@ export default class AnswerSuccess extends React.Component {
 
           <ChallangeCardFrame>
             <header>
-              {/* <h>Komentarz</h> */}
               <p>{challange.questionComment}</p>
             </header>
             <main>
@@ -63,7 +62,7 @@ export default class AnswerSuccess extends React.Component {
               </div>
             </main>
             <div className={styles.comment}>
-              <h>Gdzie dobrze sprawdzać taką informację?</h>
+              <span className={styles.stronger}>Gdzie dobrze sprawdzać taką informację?</span>
               <p>{challange.bestSourceComment}</p>
             </div>
             <main>

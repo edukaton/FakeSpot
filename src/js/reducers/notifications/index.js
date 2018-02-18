@@ -2,9 +2,9 @@ const initialState = {
   fetched: false,
   fetching: false,
   data: [
-    "Powiadomnienie #1",
-    "Powiadomnienie #2",
-    "Powiadomnienie #3",
+    "Kto jest autorem newsa?",
+    // "Powiadomnienie #2",
+    // "Powiadomnienie #3",
   ],
 };
 

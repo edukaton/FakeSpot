@@ -2,17 +2,16 @@
   display: flex
   position: relative
   flex-direction: column
-  margin-right: -32px
-  margin-left: -40px
-  padding-right: 32px
+  padding-top: 10px
+  padding-right: 40px
   padding-left: 40px
   border-radius: 2px 2px 0
   background: $newspaper-bg
   color: $newspaper-text
-  box-shadow: 10px 0 10px rgba(0,0,0,0.1), 0 0 30px rgba(0,0,0,0.2)
 
   img
     width: 100%
+    opacity: .5
 
   header
     display: flex
@@ -25,19 +24,8 @@
 
   h1
     margin: 0
-    padding: 16px 0
+    padding: 1.5em 0
+    font-size: 1.65rem
     font-weight: 500
     line-height: 1.25em
     text-align: left
-    // text-transform: uppercase
-
-  &::after
-    position: absolute
-    bottom: 0
-    left: 8px
-    width: 100%
-    height: calc(100% - 8px)
-    border-radius: 0 2px 8px 0
-    background: $newspaper-bg
-    content: ""
-    z-index: -1
