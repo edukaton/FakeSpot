@@ -10,6 +10,8 @@ import LifeLinesList from "../../components/LifeLinesList/";
 import TrueFalseButtons from "../../components/TrueFalseButtons";
 import LifeLinesDisplayed from "../../components/LifeLinesDisplayed";
 
+import styles from "../../components/ChallangeCard/style.sass";
+
 const mapStateToProps = ({ questions, notifications }) => ({
   challange: questions.data[questions.data.length - 1],
   fetched: questions.fetched,
@@ -173,9 +175,15 @@ export default class Challange extends React.Component {
 
     return (
       <ChallangeCard>
+        
         <NewsPaper>
           <h1>{challange.text}</h1>
         </NewsPaper>
+        
+        <div className={styles.questionHeader}>
+          To prawdziwa informacja czy fake? <br/>
+          Znajdź odpowiedź, wynajdując w Internecie wiarygodne źródło
+        </div>
 
         <main style={{ paddingTop: 0 }}>
           <TrueFalseButtons
