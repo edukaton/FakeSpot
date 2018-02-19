@@ -2,8 +2,9 @@
 const jsonServer = require("json-server");
 const path = require("path");
 const express = require("express");
+const axios = require("axios");
 
-const { questions } = require("./db.json");
+// const { questions } = require("./db.json");
 
 const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, "db.json"));
@@ -18,8 +19,30 @@ server.post("/api/echo", (req, res) => {
   res.jsonp(req.body);
 });
 
-server.get("/api/question", (req, res) => {
-  res.jsonp(questions[Math.floor(questions.length * Math.random())]);
+const questionsRawPromise = axios.get("https://sheetsu.com/apis/v1.0su/a41d458980b8");
+questionsRawPromise.then(() => console.log("Questions fetched"));
+
+server.get("/api/question", async (req, res) => {
+  const questionsRaw = (await questionsRawPromise).data;
+
+  const questions = questionsRaw.map((q) => {
+    const {
+      lifeLine1, lifeLine2, isTrue, ...qs
+    } = q;
+
+    return {
+      ...qs,
+      isTrue: (isTrue === "TRUE"),
+      lifeLines: [lifeLine1, lifeLine2],
+      globalAnswers: {
+        correct: Math.ceil(Math.random() * 200),
+        incorrect: Math.ceil(Math.random() * 200),
+      },
+    };
+  });
+
+  const randomQuestion = questions[Math.floor(questions.length * Math.random())];
+  res.jsonp(randomQuestion);
 });
 
 // To handle POST, PUT and PATCH you need to use a body-parser
