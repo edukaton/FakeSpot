@@ -1,6 +1,5 @@
 /* eslint-disable import/no-commonjs, import/no-extraneous-dependencies */
 const autoprefixer = require("autoprefixer");
-const tailwindcss = require("tailwindcss");
 const nested = require("postcss-nested");
 
 module.exports = iP => [
@@ -16,9 +15,8 @@ module.exports = iP => [
     loader: "postcss-loader",
     options: {
       sourceMap: !iP,
-      plugins: () => [
+      plugins: [
         autoprefixer(),
-        tailwindcss("./tailwind.js"),
         nested,
       ],
     },

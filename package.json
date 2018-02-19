@@ -17,7 +17,8 @@
         "href": "/favicon.png",
         "rel": "icon"
       },
-      "https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:300,400,700,800"
+      "https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:300,400,700,800",
+      "https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
     ],
     "lang": "pl-PL",
     "appMountId": "app"
