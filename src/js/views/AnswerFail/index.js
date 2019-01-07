@@ -57,12 +57,12 @@ export default class AnswerSuccess extends React.Component {
                 </div>
                 <div className={styles.chart}>
                   <img src="/chart.png" alt="chart" />
-                  <p>60% graczy wskazało to<br />źródło co ty</p>
+                  <p>60% graczy wskazało to<br />źródło co Ty</p>
                 </div>
               </div>
             </main>
             <div className={`${styles.comments} asd`}>
-              <span className={styles.stronger}>Gdzie dobrze sprawdzać taką informację?</span>
+              <span className={styles.stronger}>Gdzie dobrze sprawdzać takie informacje?</span>
               <p>{challange.bestSourceComment}</p>
             </div>
             <main>

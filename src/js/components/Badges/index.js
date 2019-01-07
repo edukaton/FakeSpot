@@ -10,7 +10,6 @@ export default class Badges extends React.Component {
   }
 
   render() {
-    console.log(this.initialBadges);
     const badges = this.props.badges.map(badge =>
       (
         <div

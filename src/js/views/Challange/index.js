@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { LIFE_LINE_1_TIME, LIFE_LINE_2_TIME } from "../../constants/notifications";
+
 import { submitAnswers, fetchQuestion } from "../../actions/questions/";
+import { requestPermission } from "../../utils/notifications";
 
 import NewsPaper from "../../components/NewsPaper";
 import InputsList from "../../components/InputsList/";
@@ -33,8 +36,8 @@ export default class Challange extends React.Component {
       lifelinesUnlocked: 0,
     };
 
-    this.timer = null;
-    this.timer2 = null;
+    this.hintTimer = null;
+    this.lifeLineTimer = null;
 
     const notificationsShuffled = [...props.notifications];
 
@@ -51,33 +54,33 @@ export default class Challange extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchQuestion());
 
-    Notification.requestPermission()
+    requestPermission()
       .then((result) => {
         if (result === "granted") {
           this.sendNotification(10);
         }
       });
 
-    this.timer2 = setTimeout(() => {
+    this.lifeLineTimer = setTimeout(() => {
       this.setState({
         lifelinesUnlocked: this.state.lifelinesUnlocked + 1,
       });
 
-      const notification = new Notification(`Odblokowałeś ${this.state.lifelinesUnlocked}. koło ratunkowe!`);
+      new Notification(`Odblokowałeś ${this.state.lifelinesUnlocked}. koło ratunkowe!`);
 
-      this.timer2 = setTimeout(() => {
+      this.lifeLineTimer = setTimeout(() => {
         this.setState({
           lifelinesUnlocked: this.state.lifelinesUnlocked + 1,
         });
 
-        const notification = new Notification(`Odblokowałeś ${this.state.lifelinesUnlocked}. koło ratunkowe!`);
-      }, 1000 * 30);
-    }, 1000 * 15);
+        new Notification(`Odblokowałeś ${this.state.lifelinesUnlocked}. koło ratunkowe!`);
+      }, 1000 * LIFE_LINE_1_TIME);
+    }, 1000 * (LIFE_LINE_2_TIME - LIFE_LINE_1_TIME));
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
-    clearInterval(this.timer2);
+    clearInterval(this.hintTimer);
+    clearInterval(this.lifeLineTimer);
   }
 
   onSourceInput = n => (e) => {
@@ -125,7 +128,7 @@ export default class Challange extends React.Component {
   onSubmitFalse = () => this.selectButton(false);
 
   sendNotification = (time) => {
-    this.timer = setTimeout(() => {
+    this.hintTimer = setTimeout(() => {
       const options = {
         body: this.notificationsShuffled[this.state.notificationIndex],
         icon: "/avatar.png",
@@ -184,7 +187,7 @@ export default class Challange extends React.Component {
         </NewsPaper>
 
         <div className={`${styles.questionHeader} leading-normal`}>
-          To prawdziwa informacja czy fake? <br />
+          Czy ta informacja jest prawdziwa czy fałszywa? <br />
           Znajdź odpowiedź, wynajdując w Internecie wiarygodne źródło
         </div>
 

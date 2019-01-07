@@ -2,7 +2,7 @@
 const packagejson = require("../package.json");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackTemplate = require("html-webpack-template");
-const OfflinePlugin = require("offline-plugin");
+// const OfflinePlugin = require("offline-plugin");
 
 const path = require("path");
 const webpack = require("webpack");
@@ -79,7 +79,7 @@ module.exports = {
       new webpack.optimize.CommonsChunkPlugin({
         name: "vendor",
       }),
-      new OfflinePlugin(),
+      // new OfflinePlugin(),
     ],
   },
 };

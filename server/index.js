@@ -22,27 +22,52 @@ server.post("/api/echo", (req, res) => {
 const questionsRawPromise = axios.get("https://sheetsu.com/apis/v1.0su/a41d458980b8");
 questionsRawPromise.then(() => console.log("Questions fetched"));
 
-server.get("/api/question", async (req, res) => {
+(async () => console.log((await questionsRawPromise).data))();
+
+const questionsAskedForUsers = {};
+
+server.get("/api/question/:userToken", async (req, res) => {
   const questionsRaw = (await questionsRawPromise).data;
 
-  const questions = questionsRaw.map((q) => {
-    const {
-      lifeLine1, lifeLine2, isTrue, ...qs
-    } = q;
+  if (!questionsAskedForUsers[req.params.userToken]) {
+    questionsAskedForUsers[req.params.userToken] = [];
+  }
 
-    return {
-      ...qs,
-      isTrue: (isTrue === "TRUE"),
-      lifeLines: [lifeLine1, lifeLine2],
-      globalAnswers: {
-        correct: Math.ceil(Math.random() * 200),
-        incorrect: Math.ceil(Math.random() * 200),
-      },
-    };
-  });
+  const questionsAskedById = questionsAskedForUsers[req.params.userToken];
 
-  const randomQuestion = questions[Math.floor(questions.length * Math.random())];
-  res.jsonp(randomQuestion);
+  if (questionsAskedById.length === questionsRaw.length - 1) {
+    questionsAskedForUsers[req.params.userToken] = [];
+  }
+
+  const availableQuestions = questionsRaw.filter(
+    ({ id: qId }) => questionsAskedById.indexOf(qId) < 0,
+  );
+
+  if (availableQuestions.length <= 0) {
+    questionsAskedForUsers[req.params.userToken] = [];
+  }
+
+
+  console.log(availableQuestions.length);
+  const randomQuestion = availableQuestions[Math.floor(availableQuestions.length * Math.random())];
+
+  const {
+    id, lifeLine1, lifeLine2, isTrue, ...qs
+  } = randomQuestion;
+
+  questionsAskedForUsers[req.params.userToken].push(id);
+
+  const question = {
+    ...qs,
+    isTrue: (isTrue === "TRUE"),
+    lifeLines: [lifeLine1, lifeLine2],
+    globalAnswers: {
+      correct: Math.ceil(Math.random() * 200),
+      incorrect: Math.ceil(Math.random() * 200),
+    },
+  };
+
+  res.jsonp(question);
 });
 
 // To handle POST, PUT and PATCH you need to use a body-parser

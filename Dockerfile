@@ -1,16 +1,11 @@
-FROM node:dubnium-alpine
-
-COPY package.json /tmp/package.json
-COPY yarn.lock /tmp/yarn.lock
-RUN cd /tmp && yarn install
+FROM node:carbon
 
 WORKDIR /usr/src/app
-RUN mkdir node_modules
-RUN cp -a /tmp/node_modules ./
 
 COPY . ./
 
-RUN yarn run build
+RUN npm install
+RUN npm run build
 
 EXPOSE 3000
-CMD ["yarn", "run", "server"]
+CMD ["npm", "run", "server"]

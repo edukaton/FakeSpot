@@ -3,7 +3,7 @@ const initialState = {
   fetching: false,
   data: {
     username: "Andrzej",
-    badgesCollected: [0, 2],
+    badgesCollected: [],
     points: 0,
     avatar: "/avatar.gif",
     questionsCompleted: 0,

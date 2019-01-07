@@ -33,14 +33,20 @@
     transition: opacity .2s ease-in-out, transform .2s ease-in-out
     border-radius: 0
     background: none
-    color: $white
     font-size: 1rem
     text-align: center
     box-shadow: none
     word-break: break-word
 
-    &:not([href])
+    p
+      margin: .25em 0
+
+    a
+      color: $white
       text-decoration: none
+
+      &:hover
+        text-decoration: underline
 
     &::after, &::before
       display: none
@@ -65,18 +71,21 @@
       cursor: default
       opacity: 0.5
 
-    &:first-child
-      justify-content: flex-end
+    &:not(.used)
+      &:first-child
+        justify-content: flex-end
 
-      &::after
-        display: block
+        &::after
+          display: block
 
-    &:last-child
-      justify-content: flex-start
+      &:last-child
+        justify-content: flex-start
 
-      &::before
-        display: block
+        &::before
+          display: block
 
     &.used
+      flex-direction: column
+      
       &::after, &::before
         display: none
